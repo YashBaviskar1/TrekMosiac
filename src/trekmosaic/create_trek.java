@@ -4,7 +4,7 @@
  */
 package trekmosaic;
 import javax.swing.JOptionPane;
-
+import java.sql.*;
 /**
  *
  * @author main
@@ -67,8 +67,7 @@ public class create_trek extends javax.swing.JFrame {
         jPanel2.add(lblregister, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 14, 163, 37));
 
         jtextlast_name.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jtextlast_name.setForeground(new java.awt.Color(204, 204, 204));
-        jtextlast_name.setText("Last Name");
+        jtextlast_name.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jtextlast_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtextlast_nameActionPerformed(evt);
@@ -77,8 +76,7 @@ public class create_trek extends javax.swing.JFrame {
         jPanel2.add(jtextlast_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 271, 41));
 
         jtextemail.setFont(new java.awt.Font("Segoe UI Light", 2, 18)); // NOI18N
-        jtextemail.setForeground(new java.awt.Color(204, 204, 204));
-        jtextemail.setText("someone@example.com\n");
+        jtextemail.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jtextemail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtextemailActionPerformed(evt);
@@ -87,8 +85,12 @@ public class create_trek extends javax.swing.JFrame {
         jPanel2.add(jtextemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 271, 44));
 
         jtextuser_name.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jtextuser_name.setForeground(new java.awt.Color(204, 204, 204));
-        jtextuser_name.setText("Username");
+        jtextuser_name.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jtextuser_name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtextuser_nameActionPerformed(evt);
+            }
+        });
         jPanel2.add(jtextuser_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 271, 43));
 
         jbtregister.setBackground(new java.awt.Color(153, 153, 153));
@@ -104,8 +106,16 @@ public class create_trek extends javax.swing.JFrame {
         jPanel2.add(jbtregister, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 418, 124, 43));
 
         firstNameField.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
-        firstNameField.setForeground(new java.awt.Color(204, 204, 204));
-        firstNameField.setText("First Name ");
+        firstNameField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        firstNameField.setDoubleBuffered(true);
+        firstNameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                firstNameFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                firstNameFieldFocusLost(evt);
+            }
+        });
         firstNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 firstNameFieldActionPerformed(evt);
@@ -159,7 +169,7 @@ public class create_trek extends javax.swing.JFrame {
 
     private void firstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameFieldActionPerformed
         // TODO add your handling code here:
-        firstNameField.setText(" ");
+        
         
     }//GEN-LAST:event_firstNameFieldActionPerformed
 
@@ -169,13 +179,48 @@ public class create_trek extends javax.swing.JFrame {
 
     private void jbtregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtregisterActionPerformed
         // TODO add your handling code here:
+        try{
+        String enteredUsername = jtextuser_name.getText();
+        String enteredPassword = jPasswordField1.getText();
         
+        Connection con = DatabaseConnection.connect();
+        String query = "INSERT into user_login (username, password) VALUES (?, ?)";
+        try(PreparedStatement statement = con.prepareStatement(query)){
+            statement.setString(1, enteredUsername);
+            statement.setString(2, enteredPassword);
+            
+        statement.executeUpdate();
         JOptionPane.showConfirmDialog(this, "Registration confirmed Sign in to continue");
         create_trek.this.dispose();
-        dashboard_v2 db = new dashboard_v2();
-        db.setLocationRelativeTo(null);
-        db.setVisible(true);
+        login Login = new login();
+        Login.setLocationRelativeTo(null);
+        Login.setVisible(true);
+        }
+            
+       
     }//GEN-LAST:event_jbtregisterActionPerformed
+    catch(SQLException ex){System.out.print(ex);}
+    finally{
+            DatabaseConnection.disconnect();
+        }
+    }
+    
+    
+    
+    private void firstNameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_firstNameFieldFocusGained
+        
+    }//GEN-LAST:event_firstNameFieldFocusGained
+
+    private void firstNameFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_firstNameFieldFocusLost
+      
+       
+            
+    
+    }//GEN-LAST:event_firstNameFieldFocusLost
+
+    private void jtextuser_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtextuser_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtextuser_nameActionPerformed
 
     /**
      * @param args the command line arguments
