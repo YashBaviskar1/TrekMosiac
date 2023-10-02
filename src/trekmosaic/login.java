@@ -10,6 +10,9 @@
 package trekmosaic;
 
 import javax.swing.JOptionPane;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class login extends javax.swing.JFrame {
 
@@ -139,19 +142,43 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        // TODO add your handling code here:
-        String username = loginUsernameField.getText();
-        String password = loginPasswordField.getText();
+      
+        try {
+        String enteredUsername = loginUsernameField.getText();
+        String enteredPassword = loginPasswordField.getText();
+
+        Connection con = DatabaseConnection.connect();
+
         
-        if("user".equals(username) && "123456".equals(password)){
+        String query = "SELECT * FROM user_login WHERE username=?";
+        try (PreparedStatement statement = con.prepareStatement(query)) {
+            statement.setString(1, enteredUsername);
+
             
-            UserData.check = 1;
-           JOptionPane.showMessageDialog(this, "You have signed in successfully ");
-           }
-        else 
-        {
-            JOptionPane.showMessageDialog(this, "Invalid username or password");
+            ResultSet result = statement.executeQuery();
+
+            
+            if (result.next()) {
+               
+                String storedPassword = result.getString("password");
+
+             
+                if (enteredPassword.equals(storedPassword)) {
+                    
+                    UserData.check = 1;
+                    JOptionPane.showMessageDialog(this, "You have signed in successfully ");
+                } else {
+                  
+                    JOptionPane.showMessageDialog(this, "Invalid password");
+                }
+            } else {
+              
+                JOptionPane.showMessageDialog(this, "Invalid username");
+            }
         }
+    } catch (SQLException ex) {} finally {
+        DatabaseConnection.disconnect();
+    }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
