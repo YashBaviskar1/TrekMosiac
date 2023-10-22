@@ -9,7 +9,14 @@
  */
 package trekmosaic;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class createtrek extends javax.swing.JFrame {
 
@@ -49,6 +56,7 @@ public class createtrek extends javax.swing.JFrame {
         locNameField = new javax.swing.JTextField();
         confirmbutton = new javax.swing.JButton();
         homeButton = new javax.swing.JButton();
+        attachButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -198,6 +206,18 @@ public class createtrek extends javax.swing.JFrame {
         jPanel1.add(homeButton);
         homeButton.setBounds(720, 290, 120, 40);
 
+        attachButton.setBackground(new java.awt.Color(102, 102, 102));
+        attachButton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        attachButton.setForeground(new java.awt.Color(255, 255, 255));
+        attachButton.setText("ATTACH");
+        attachButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                attachButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(attachButton);
+        attachButton.setBounds(720, 350, 120, 40);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1080, 700);
@@ -269,6 +289,38 @@ public class createtrek extends javax.swing.JFrame {
       String inclusionsName = TrekData.getInclusionsName();
       String infoName = TrekData.getinfoName();
       String price = TrekData.getPrice();
+      String filepath = TrekData.getFilename();
+      
+      Connection con = DatabaseConnection.connect();
+      String trekQuery = "INSERT into trek_data(name, location, height, transport, short_itinerary, inclusions, info, price, image ) VALUES(?,?,?,?,?,?,?,?,?)";
+      
+      try(PreparedStatement statement = con.prepareStatement(trekQuery)){
+         statement.setString(1, trekName);
+         statement.setString(2, locName);
+         statement.setString(3, heightName);
+         statement.setString(4, transportationName);
+         statement.setString(5, itinary);
+         statement.setString(6, inclusionsName);
+         statement.setString(7, infoName);
+         statement.setString(8, price);
+         
+         FileInputStream fis;
+          try {
+              fis = new FileInputStream(filepath);
+              statement.setBinaryStream(9, fis);
+          } catch (FileNotFoundException ex) {
+              Logger.getLogger(createtrek.class.getName()).log(Level.SEVERE, null, ex);
+          }
+         
+         statement.executeUpdate();
+      } 
+      catch(SQLException ex){System.out.print(ex);}
+        finally{
+            DatabaseConnection.disconnect();
+        }
+        
+    
+    
       
       DisplayCreateTrek display = new DisplayCreateTrek();
       DisplayCreateTrek.trekNameDisplayLabel.setText("Name of Trek : " + trekName);
@@ -296,12 +348,22 @@ public class createtrek extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_priceFieldActionPerformed
 
+    private void attachButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attachButtonActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        String filename = f.getAbsolutePath();
+        TrekData.setFilename(filename);
+    }//GEN-LAST:event_attachButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton attachButton;
     private javax.swing.JButton confirmbutton;
     private javax.swing.JTextField heightNameField;
     private javax.swing.JButton homeButton;

@@ -17,6 +17,14 @@ public class TrekData {
     private static String inclusionsName;
     private static String infoName;
     private static String price; 
+    private static String filename;
+    
+    public static void setFilename(String file){
+        filename = file;
+    }
+    public static String getFilename(){
+        return filename;
+    } 
     
     public static String getTrekname(){
         return trekName;

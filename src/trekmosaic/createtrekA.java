@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package trekmosaic;
-
+import java.sql.*;
+import javax.swing.ImageIcon;
 /**
  *
  * @author khand
@@ -54,13 +55,15 @@ public class createtrekA extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
-        lblBgrnd = new javax.swing.JLabel();
+        testButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1080, 720));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.setMaximumSize(new java.awt.Dimension(1080, 720));
         jPanel1.setMinimumSize(new java.awt.Dimension(1080, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -81,13 +84,13 @@ public class createtrekA extends javax.swing.JFrame {
             panelPuneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPuneLayout.createSequentialGroup()
                 .addComponent(lblPune, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 36, Short.MAX_VALUE))
         );
         panelPuneLayout.setVerticalGroup(
             panelPuneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPuneLayout.createSequentialGroup()
                 .addComponent(lblPune, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
         jPanel1.add(panelPune, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 110, 30));
@@ -98,7 +101,6 @@ public class createtrekA extends javax.swing.JFrame {
 
         lblMumbai.setBackground(new java.awt.Color(156, 153, 153));
         lblMumbai.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        lblMumbai.setForeground(new java.awt.Color(0, 153, 153));
         lblMumbai.setText("MUMBAI");
         lblMumbai.setToolTipText("");
 
@@ -141,7 +143,6 @@ public class createtrekA extends javax.swing.JFrame {
         jPanel1.add(pandevkund, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 160, 130));
 
         lbldekund.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        lbldekund.setForeground(new java.awt.Color(255, 255, 255));
         lbldekund.setText("DEVKUND  WATERFALL");
         jPanel1.add(lbldekund, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 290, 50));
 
@@ -150,13 +151,11 @@ public class createtrekA extends javax.swing.JFrame {
         buttjoin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 255, 255), new java.awt.Color(0, 153, 153), new java.awt.Color(0, 102, 102), new java.awt.Color(204, 255, 255)));
         jPanel1.add(buttjoin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 580, 80, 30));
 
-        buttinfo.setBackground(new java.awt.Color(204, 255, 255));
         buttinfo.setText("JOIN");
         buttinfo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 255, 255), new java.awt.Color(0, 153, 153), new java.awt.Color(0, 102, 102), new java.awt.Color(204, 255, 255)));
         jPanel1.add(buttinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 580, 80, 30));
 
         lbldates.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
-        lbldates.setForeground(new java.awt.Color(255, 255, 255));
         lbldates.setText("Availabe Dates");
         jPanel1.add(lbldates, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 490, -1, -1));
 
@@ -195,12 +194,10 @@ public class createtrekA extends javax.swing.JFrame {
         jPanel1.add(panpebimage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 160, 130));
 
         lblpeb.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        lblpeb.setForeground(new java.awt.Color(204, 255, 255));
         lblpeb.setText("PEB FORT");
         jPanel1.add(lblpeb, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, -1, -1));
 
         lbldates1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
-        lbldates1.setForeground(new java.awt.Color(255, 255, 255));
         lbldates1.setText("Availabe Dates");
         jPanel1.add(lbldates1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, -1, -1));
 
@@ -217,7 +214,6 @@ public class createtrekA extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 130, 30));
 
-        buttinfo1.setBackground(new java.awt.Color(204, 255, 255));
         buttinfo1.setText("JOIN");
         buttinfo1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 255, 255), new java.awt.Color(0, 153, 153), new java.awt.Color(0, 102, 102), new java.awt.Color(204, 255, 255)));
         buttinfo1.addActionListener(new java.awt.event.ActionListener() {
@@ -227,7 +223,6 @@ public class createtrekA extends javax.swing.JFrame {
         });
         jPanel1.add(buttinfo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 80, 30));
 
-        infobutton.setBackground(new java.awt.Color(204, 255, 255));
         infobutton.setText("INFO");
         infobutton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 255, 255), new java.awt.Color(0, 153, 153), new java.awt.Color(0, 102, 102), new java.awt.Color(204, 255, 255)));
         infobutton.addActionListener(new java.awt.event.ActionListener() {
@@ -239,7 +234,6 @@ public class createtrekA extends javax.swing.JFrame {
 
         lbljointrek.setBackground(new java.awt.Color(153, 255, 255));
         lbljointrek.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
-        lbljointrek.setForeground(new java.awt.Color(153, 255, 255));
         lbljointrek.setText("JOIN A TREK");
         jPanel1.add(lbljointrek, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 830, 20));
@@ -260,23 +254,15 @@ public class createtrekA extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 610, 180, 30));
 
-        lblBgrnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
-        jPanel1.add(lblBgrnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1080, 720));
+        testButton.setText("test");
+        testButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(testButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 550, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -305,10 +291,62 @@ public class createtrekA extends javax.swing.JFrame {
         info_page.setVisible(true);
     }//GEN-LAST:event_infobuttonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
- 
+    private void testButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testButtonActionPerformed
+        String trekName = "Mahableshwar";
+        addTrekPanel(trekName);
+        revalidate();
+        repaint();
+    }//GEN-LAST:event_testButtonActionPerformed
+  
+ private void addTrekPanel(String trekName) {
+        javax.swing.JPanel trekPanel;
+        trekPanel = new javax.swing.JPanel();
+        trekPanel.setBackground(new java.awt.Color(255, 255, 255));
+        trekPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 102), null, null, new java.awt.Color(0, 102, 102)));
+        
+        javax.swing.JLabel lblTrekName = new javax.swing.JLabel();
+        lblTrekName.setFont(new java.awt.Font("Dubai", 1, 18));
+        lblTrekName.setForeground(new java.awt.Color(0, 153, 153));
+        lblTrekName.setText(trekName);
+
+        // You can add more components like JLabels for dates and images here
+        
+        trekPanel.add(lblTrekName);
+        ImageIcon imageIcon = getImageFromDatabase(trekName);
+        if (imageIcon != null) {
+        javax.swing.JLabel lblImage = new javax.swing.JLabel(imageIcon);
+        trekPanel.add(lblImage);
+    }
+        trekPanel.add(lblTrekName);
+
+    // Add the trek panel to jPanel1
+    jPanel1.add(trekPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 420, 290));
+        // Add the trek panel to jPanel1
+        jPanel1.add(trekPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 420, 290));
+
+        jPanel1.revalidate();
+        jPanel1.repaint();
+          }
+ private ImageIcon getImageFromDatabase(String trekName) {
+    try {
+        Connection con = DatabaseConnection.connect();
+        String selectQuery = "SELECT image FROM trek_data WHERE name = ?";
+        try (PreparedStatement statement = con.prepareStatement(selectQuery)) {
+            statement.setString(1, trekName);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    Blob imageBlob = resultSet.getBlob("image");
+                    byte[] imageBytes = imageBlob.getBytes(1, (int) imageBlob.length());
+                    ImageIcon imageIcon = new ImageIcon(imageBytes);
+                    return imageIcon;
+                }
+            }
+        }
+    } catch (SQLException ex) {
+    }
+    return null;
+}
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttinfo;
@@ -326,7 +364,6 @@ public class createtrekA extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JLabel lblBgrnd;
     private javax.swing.JLabel lblMumbai;
     private javax.swing.JLabel lblPune;
     private javax.swing.JLabel lbldates;
@@ -340,5 +377,6 @@ public class createtrekA extends javax.swing.JFrame {
     private javax.swing.JPanel panelMumbai;
     private javax.swing.JPanel panelPune;
     private javax.swing.JPanel panpebimage2;
+    private javax.swing.JButton testButton;
     // End of variables declaration//GEN-END:variables
 }

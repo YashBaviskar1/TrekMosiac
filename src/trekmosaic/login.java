@@ -166,6 +166,7 @@ public class login extends javax.swing.JFrame {
                 if (enteredPassword.equals(storedPassword)) {
                     
                     UserData.check = 1;
+                    
                     JOptionPane.showMessageDialog(this, "You have signed in successfully ");
                 } else {
                   

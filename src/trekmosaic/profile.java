@@ -28,21 +28,22 @@ public class profile extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         textArea1 = new java.awt.TextArea();
-        jLabel5 = new javax.swing.JLabel();
+        locationLabel = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         textArea2 = new java.awt.TextArea();
         jLabel6 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        usernametext = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
         myprofiletext = new javax.swing.JLabel();
-        agetext = new javax.swing.JLabel();
+        ageLabel = new javax.swing.JLabel();
         blankpfp = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         verifybutton = new javax.swing.JButton();
+        nameLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,10 +60,10 @@ public class profile extends javax.swing.JFrame {
         jPanel1.add(textArea1);
         textArea1.setBounds(120, 320, 500, 80);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
-        jLabel5.setText("location : ");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(150, 180, 90, 20);
+        locationLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        locationLabel.setText("location : ");
+        jPanel1.add(locationLabel);
+        locationLabel.setBounds(150, 200, 90, 20);
 
         jButton4.setText("home");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -98,20 +99,20 @@ public class profile extends javax.swing.JFrame {
         jPanel1.add(jLabel13);
         jLabel13.setBounds(100, 640, 80, 20);
 
-        usernametext.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
-        usernametext.setText("username : ");
-        jPanel1.add(usernametext);
-        usernametext.setBounds(150, 120, 101, 25);
+        usernameLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        usernameLabel.setText("username : ");
+        jPanel1.add(usernameLabel);
+        usernameLabel.setBounds(150, 150, 101, 25);
 
         myprofiletext.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         myprofiletext.setText("MY PROFILE");
         jPanel1.add(myprofiletext);
         myprofiletext.setBounds(20, 30, 120, 50);
 
-        agetext.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
-        agetext.setText("age : ");
-        jPanel1.add(agetext);
-        agetext.setBounds(150, 150, 52, 25);
+        ageLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        ageLabel.setText("age : ");
+        jPanel1.add(ageLabel);
+        ageLabel.setBounds(150, 170, 52, 25);
 
         blankpfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/EMPTY_PFP.png"))); // NOI18N
         jPanel1.add(blankpfp);
@@ -145,6 +146,12 @@ public class profile extends javax.swing.JFrame {
         });
         jPanel1.add(verifybutton);
         verifybutton.setBounds(600, 110, 130, 30);
+
+        nameLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        nameLabel.setText("name :");
+        nameLabel.setToolTipText("");
+        jPanel1.add(nameLabel);
+        nameLabel.setBounds(150, 130, 80, 25);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
         jLabel2.setToolTipText("");
@@ -182,7 +189,7 @@ public class profile extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel agetext;
+    private javax.swing.JLabel ageLabel;
     private javax.swing.JLabel blankpfp;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
@@ -191,14 +198,15 @@ public class profile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel locationLabel;
     private javax.swing.JLabel myprofiletext;
+    private javax.swing.JLabel nameLabel;
     private java.awt.TextArea textArea1;
     private java.awt.TextArea textArea2;
-    private javax.swing.JLabel usernametext;
+    private javax.swing.JLabel usernameLabel;
     private javax.swing.JButton verifybutton;
     // End of variables declaration//GEN-END:variables
 }
