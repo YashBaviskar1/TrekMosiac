@@ -3,11 +3,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package trekmosaic;
-
+import trekmosaic.TrekJoinInfo;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.Popup;
+import trekmosaic.TrekCode;
 /**
  *
  * @author ADMIN
  */
+
 public class joinatrek extends javax.swing.JFrame {
 
     /**
@@ -26,22 +43,195 @@ public class joinatrek extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        bglabel = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        testField = new javax.swing.JTextField();
+        testButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1080, 720));
+        setMinimumSize(new java.awt.Dimension(1080, 70));
+        setPreferredSize(new java.awt.Dimension(180, 720));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 290, 230));
 
-        bglabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
-        getContentPane().add(bglabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel9.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        testField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testFieldActionPerformed(evt);
+            }
+        });
+        jPanel9.add(testField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 150, 30));
+
+        testButton.setText("ENTER");
+        testButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testButtonActionPerformed(evt);
+            }
+        });
+        jPanel9.add(testButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, 30));
+
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 270, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void testButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testButtonActionPerformed
+        
+        String trekName = testField.getText();
+        
+        int a = TrekDataFetch(trekName);
+        if(a == 1){
+            addImageLabel(trekName);
+        } 
+    }//GEN-LAST:event_testButtonActionPerformed
+
+    private void testFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testFieldActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_testFieldActionPerformed
+    
+    
+    private void addImageLabel(String trekName){
+        int x = TrekCode.x_label;
+        int y = TrekCode.y_label;
+        int height = TrekCode.height_label;
+        int width = TrekCode.width_label;
+        TrekCode trekcode = new TrekCode();
+        ImageIcon imageIcon = getImageFromDatabase(trekName);
+        
+        ImageLabel = new javax.swing.JLabel(imageIcon);
+        ImagePanel = new javax.swing.JPanel();
+        ButtonToJoin = new javax.swing.JButton();
+        ButtonToInfo = new javax.swing.JButton();
+        TrekLabel = new javax.swing.JLabel();
+        ImageInPanel = new javax.swing.JPanel();
+        
+        ImageInPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+       
+        
+        ImagePanel.setBackground(new java.awt.Color(205, 205, 205));
+        ImagePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ImagePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        ImagePanel.setMaximumSize(new java.awt.Dimension(270, 240));
+        ImagePanel.setMinimumSize(new java.awt.Dimension(270, 240));
+        ImagePanel.setRequestFocusEnabled(false);
+        
+        
+        
+        getContentPane().add(ImagePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y , width, height ));
+        
+        TrekLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        TrekLabel.setText(trekName);
+        TrekLabel.setSize(new Dimension(width,height));
+        ImagePanel.add(TrekLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 170, 24));
+        
+        ImageInPanel.add(ImageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 140));
+        
+        ImagePanel.add(ImageInPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 140) );
+        
+        ButtonToJoin.setText("JOIN");
+        ButtonToJoin.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joinButtonActionPerformed(evt);
+            }
+
+            private void joinButtonActionPerformed(ActionEvent evt) {
+                TrekJoinInfo JoinTrek = new TrekJoinInfo();
+                
+                JoinTrek.setTrekNameLabel(trekName2);
+                JoinTrek.setLocationLabel(location);
+                JoinTrek.setHeightLabel(height);
+                JoinTrek.setItinenaryText(itinenary);
+                JoinTrek.setTransportText(transport);
+                JoinTrek.setInclusionText(info);
+                JoinTrek.setPriceLabel(price);
+                
+                JoinTrek.setVisible(true);
+            }
+      
+                 
+           
+        });
+        
+        ButtonToInfo.setText("INFO");
+        
+        
+        ImagePanel.add(ButtonToJoin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, -1, -1));
+        ImagePanel.add(ButtonToInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
+        
+        TrekCode.x_label = trekcode.X_Cordinates(x);
+        TrekCode.y_label = trekcode.Y_Cordinates(x, y);
+        ImagePanel.revalidate();
+        ImagePanel.repaint();
+    }
+    
+    
+    private ImageIcon getImageFromDatabase(String trekName) {
+    try {
+        Connection con = DatabaseConnection.connect();
+        String selectQuery = "SELECT image FROM trek_data WHERE name = ?";
+        try (PreparedStatement statement = con.prepareStatement(selectQuery)) {
+            statement.setString(1, trekName);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    Blob imageBlob = resultSet.getBlob("image");
+                    byte[] imageBytes = imageBlob.getBytes(1, (int) imageBlob.length());
+                    ImageIcon imageIcon = new ImageIcon(imageBytes);
+                    return imageIcon;
+                }
+            }
+        }
+    } catch (SQLException ex) {
+    } finally {
+        DatabaseConnection.disconnect();
+    }
+    return null;
+}
+    private int TrekDataFetch(String name){
+        try {
+            
+            Connection con = DatabaseConnection.connect();
+            String query = "SELECT * from trek_data where name = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
+            
+            try {
+                if(resultSet.next())
+                {
+                    trekName2 = resultSet.getString("name");
+                    location = resultSet.getString("location");
+                    height = resultSet.getInt("height");
+                    transport = resultSet.getString("transport");
+                    itinenary = resultSet.getString("short_itinerary");
+                    inclusions = resultSet.getString("inclusions");
+                    info = resultSet.getString("info");
+                    price = resultSet.getInt("price");
+                    resultSet.close();
+                    statement.close();
+                    con.close();
+                    return 1;
+                } else {
+                    JOptionPane.showMessageDialog(this, "Trek Name not Found");
+                    resultSet.close();
+                    statement.close();
+                    con.close();
+                    return 0;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(joinatrek.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch(SQLException ex){
+            
+        }
+        return 0;
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -75,7 +265,26 @@ public class joinatrek extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel bglabel;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JButton testButton;
+    private javax.swing.JTextField testField;
     // End of variables declaration//GEN-END:variables
+    private javax.swing.JLabel ImageLabel;
+    private javax.swing.JPanel ImagePanel;
+    private javax.swing.JButton ButtonToJoin;
+    private javax.swing.JButton ButtonToInfo;
+    private javax.swing.JLabel TrekLabel;
+    private javax.swing.JPanel ImageInPanel;
+    private javax.swing.JPanel TrekInfoPanel;
+    private Component component;
+    
+    private String trekName2;
+    private String location;
+    private int height;
+    private String transport;
+    private String itinenary;
+    private String inclusions;
+    private String info;
+    private int price;
+    
 }

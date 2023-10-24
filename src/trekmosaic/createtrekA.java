@@ -5,6 +5,7 @@
 package trekmosaic;
 import java.sql.*;
 import javax.swing.ImageIcon;
+import trekmosaic.joinatrek;
 /**
  *
  * @author khand
@@ -55,7 +56,8 @@ public class createtrekA extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
-        testButton = new javax.swing.JButton();
+        avaliableTrekButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1080, 720));
@@ -180,22 +182,22 @@ public class createtrekA extends javax.swing.JFrame {
             panpebimage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panpebimage2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblpebimage2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(lblpebimage2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panpebimage2Layout.setVerticalGroup(
             panpebimage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panpebimage2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblpebimage2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblpebimage2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(panpebimage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 160, 130));
 
-        lblpeb.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        lblpeb.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblpeb.setText("PEB FORT");
-        jPanel1.add(lblpeb, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, -1, -1));
+        jPanel1.add(lblpeb, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 100, 30));
 
         lbldates1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         lbldates1.setText("Availabe Dates");
@@ -254,13 +256,16 @@ public class createtrekA extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 610, 180, 30));
 
-        testButton.setText("test");
-        testButton.addActionListener(new java.awt.event.ActionListener() {
+        avaliableTrekButton.setText("AVALIABLE TREKS");
+        avaliableTrekButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                testButtonActionPerformed(evt);
+                avaliableTrekButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(testButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 550, -1, -1));
+        jPanel1.add(avaliableTrekButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, 150, 30));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 720));
 
@@ -291,12 +296,13 @@ public class createtrekA extends javax.swing.JFrame {
         info_page.setVisible(true);
     }//GEN-LAST:event_infobuttonActionPerformed
 
-    private void testButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testButtonActionPerformed
-        String trekName = "Mahableshwar";
-        addTrekPanel(trekName);
-        revalidate();
-        repaint();
-    }//GEN-LAST:event_testButtonActionPerformed
+    private void avaliableTrekButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avaliableTrekButtonActionPerformed
+        // TODO add your handling code here:
+        createtrekA.this.dispose();
+        joinatrek atrek = new joinatrek();
+        atrek.setLocationRelativeTo(null);
+        atrek.setVisible(true);
+    }//GEN-LAST:event_avaliableTrekButtonActionPerformed
   
  private void addTrekPanel(String trekName) {
         javax.swing.JPanel trekPanel;
@@ -349,6 +355,7 @@ public class createtrekA extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton avaliableTrekButton;
     private javax.swing.JButton buttinfo;
     private javax.swing.JButton buttinfo1;
     private javax.swing.JButton buttjoin;
@@ -356,6 +363,7 @@ public class createtrekA extends javax.swing.JFrame {
     private javax.swing.JList<String> datelist1;
     private javax.swing.JButton infobutton;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -377,6 +385,5 @@ public class createtrekA extends javax.swing.JFrame {
     private javax.swing.JPanel panelMumbai;
     private javax.swing.JPanel panelPune;
     private javax.swing.JPanel panpebimage2;
-    private javax.swing.JButton testButton;
     // End of variables declaration//GEN-END:variables
 }

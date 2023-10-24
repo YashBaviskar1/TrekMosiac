@@ -9,9 +9,12 @@
  */
 package trekmosaic;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.sql.*;
@@ -57,6 +60,7 @@ public class createtrek extends javax.swing.JFrame {
         confirmbutton = new javax.swing.JButton();
         homeButton = new javax.swing.JButton();
         attachButton = new javax.swing.JButton();
+        attachtextButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -209,7 +213,7 @@ public class createtrek extends javax.swing.JFrame {
         attachButton.setBackground(new java.awt.Color(102, 102, 102));
         attachButton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         attachButton.setForeground(new java.awt.Color(255, 255, 255));
-        attachButton.setText("ATTACH");
+        attachButton.setText("UPLOAD");
         attachButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 attachButtonActionPerformed(evt);
@@ -217,6 +221,16 @@ public class createtrek extends javax.swing.JFrame {
         });
         jPanel1.add(attachButton);
         attachButton.setBounds(720, 350, 120, 40);
+
+        attachtextButton.setText("ATTACH");
+        attachtextButton.setActionCommand("");
+        attachtextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                attachtextButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(attachtextButton);
+        attachtextButton.setBounds(580, 390, 90, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -285,7 +299,7 @@ public class createtrek extends javax.swing.JFrame {
       String locName = TrekData.getLocName();
       String heightName = TrekData.getHeightName();
       String transportationName = TrekData.getTransportationName();
-      String itinary = TrekData.getItinary();
+      String itinary = contents.toString();
       String inclusionsName = TrekData.getInclusionsName();
       String infoName = TrekData.getinfoName();
       String price = TrekData.getPrice();
@@ -357,6 +371,34 @@ public class createtrek extends javax.swing.JFrame {
         TrekData.setFilename(filename);
     }//GEN-LAST:event_attachButtonActionPerformed
 
+    private void attachtextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attachtextButtonActionPerformed
+      
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if(returnValue == JFileChooser.APPROVE_OPTION){
+            
+            try {
+                File selectedFile = fileChooser.getSelectedFile();
+                String filepath = selectedFile.getAbsolutePath();
+                
+                contents = new StringBuilder();
+                BufferedReader br = new BufferedReader(new FileReader(filepath));
+                String line;
+                while((line = br.readLine()) != null){
+                    contents.append(line).append("\n");
+                }
+                br.close();
+            } catch (IOException ex) {
+                Logger.getLogger(createtrek.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             
+        }
+        String s = contents.toString();
+      itinaryField.setText(s);
+            
+        
+    }//GEN-LAST:event_attachtextButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -364,6 +406,7 @@ public class createtrek extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton attachButton;
+    private javax.swing.JButton attachtextButton;
     private javax.swing.JButton confirmbutton;
     private javax.swing.JTextField heightNameField;
     private javax.swing.JButton homeButton;
@@ -386,4 +429,6 @@ public class createtrek extends javax.swing.JFrame {
     private javax.swing.JTextField transportationNameField;
     private javax.swing.JTextField trekNameField;
     // End of variables declaration//GEN-END:variables
+    private StringBuilder contents;
 }
+

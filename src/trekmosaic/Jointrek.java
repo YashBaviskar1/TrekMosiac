@@ -119,7 +119,7 @@ public class Jointrek extends javax.swing.JFrame {
         jTextArea1.setPreferredSize(new java.awt.Dimension(289, 90));
         jScrollPane3.setViewportView(jTextArea1);
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 256, 280, -1));
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 280, -1));
 
         jScrollPane4.setOpaque(false);
 
@@ -135,7 +135,7 @@ public class Jointrek extends javax.swing.JFrame {
         jTextArea2.setOpaque(false);
         jScrollPane4.setViewportView(jTextArea2);
 
-        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 338, 505, 135));
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 338, 510, 135));
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "1.Akshata k-  Thane\t", "2.Mohini D -Balkumb\t", "3.Yash B -Mira Road", "4.Sharayu M -Kaller" };
@@ -232,7 +232,7 @@ public class Jointrek extends javax.swing.JFrame {
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 710, 10));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 720));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 750));
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 1097, 741);
