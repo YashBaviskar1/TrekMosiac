@@ -4,6 +4,8 @@
  */
 package trekmosaic;
 
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,6 +39,7 @@ public class Verification extends javax.swing.JFrame {
         verifyButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         homeButton = new javax.swing.JButton();
+        uploaddoc = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,7 +60,7 @@ public class Verification extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText(" Upload id :");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 108, 41));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 108, 41));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -80,7 +83,7 @@ public class Verification extends javax.swing.JFrame {
                 verifyButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(verifyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 100, 30));
+        jPanel1.add(verifyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 100, 30));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel4.setText("                1-2 processing days to verify");
@@ -96,8 +99,18 @@ public class Verification extends javax.swing.JFrame {
         });
         jPanel1.add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 380, 100, 30));
 
+        uploaddoc.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        uploaddoc.setText("Upload Documents");
+        uploaddoc.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        uploaddoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploaddocActionPerformed(evt);
+            }
+        });
+        jPanel1.add(uploaddoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, 150, 30));
+
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 730));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1270, 730));
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1080, 720);
@@ -112,16 +125,36 @@ public class Verification extends javax.swing.JFrame {
     private void verifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyButtonActionPerformed
         // TODO add your handling code here:
         UserData.verify = 1;
+       
         JOptionPane.showMessageDialog(this, "Your Profile has been verified");
     }//GEN-LAST:event_verifyButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
+        if(filename != null){
+        JOptionPane.showMessageDialog(this, "Your profile has been verified");
         Verification.this.dispose();
         dashboard_v2 db = new dashboard_v2();
         db.setLocationRelativeTo(null);
         db.setVisible(true);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Profile is not been verified");
+        }
     }//GEN-LAST:event_homeButtonActionPerformed
+
+    private void uploaddocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploaddocActionPerformed
+        // TODO add your handling code here:
+
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        filename = f.getAbsolutePath();
+        
+
+    }//GEN-LAST:event_uploaddocActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,6 +170,8 @@ public class Verification extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton uploaddoc;
     private javax.swing.JButton verifyButton;
     // End of variables declaration//GEN-END:variables
+    private String filename;
 }

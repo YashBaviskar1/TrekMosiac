@@ -46,11 +46,13 @@ public class joinatrek extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         testField = new javax.swing.JTextField();
         testButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1080, 720));
         setMinimumSize(new java.awt.Dimension(1080, 70));
-        setPreferredSize(new java.awt.Dimension(180, 720));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -71,9 +73,30 @@ public class joinatrek extends javax.swing.JFrame {
                 testButtonActionPerformed(evt);
             }
         });
-        jPanel9.add(testButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, 30));
+        jPanel9.add(testButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, 30));
 
-        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 270, 240));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Name of Trek"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel9.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 290, 130));
+
+        jLabel1.setText("Search For Trek to continue");
+        jPanel9.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 330, 220));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/bgmtresizeddddd.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -265,7 +288,11 @@ public class joinatrek extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JButton testButton;
     private javax.swing.JTextField testField;
     // End of variables declaration//GEN-END:variables

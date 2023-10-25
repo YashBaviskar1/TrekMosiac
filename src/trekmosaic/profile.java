@@ -92,7 +92,7 @@ public class profile extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel6.setText("Past Treks : ");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(40, 440, 74, 20);
+        jLabel6.setBounds(40, 440, 78, 20);
 
         jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel13.setText("facebook : ");
@@ -131,12 +131,12 @@ public class profile extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel7.setText("About me : ");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(40, 320, 72, 20);
+        jLabel7.setBounds(40, 320, 78, 20);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         jLabel10.setText("Connect with me : ");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(50, 570, 135, 22);
+        jLabel10.setBounds(50, 570, 138, 22);
 
         verifybutton.setText("VERIFY PROFILE");
         verifybutton.addActionListener(new java.awt.event.ActionListener() {
@@ -151,12 +151,12 @@ public class profile extends javax.swing.JFrame {
         nameLabel.setText("name :");
         nameLabel.setToolTipText("");
         jPanel1.add(nameLabel);
-        nameLabel.setBounds(150, 130, 80, 25);
+        nameLabel.setBounds(150, 130, 230, 25);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
         jLabel2.setToolTipText("");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(0, 0, 1080, 720);
+        jLabel2.setBounds(-80, 0, 1080, 720);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1230, 730);
@@ -182,10 +182,10 @@ public class profile extends javax.swing.JFrame {
         verify.setLocationRelativeTo(null);
         verify.setVisible(true);
     }//GEN-LAST:event_verifybuttonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    public void setName(String name){
+        nameLabel.setText("name : " + name);
+    }
+  
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

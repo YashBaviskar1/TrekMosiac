@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import trekmosaic.profile;
 public class login extends javax.swing.JFrame {
 
     /**
@@ -151,12 +151,25 @@ public class login extends javax.swing.JFrame {
 
         
         String query = "SELECT * FROM user_login WHERE username=?";
-        try (PreparedStatement statement = con.prepareStatement(query)) {
+        String dataquery = "SELECT * from user_data WHERE username = ?";
+        try (PreparedStatement statement = con.prepareStatement(query);
+             PreparedStatement Userstatement = con.prepareStatement(dataquery)) {
             statement.setString(1, enteredUsername);
-
-            
+            Userstatement.setString(1, enteredUsername);
+           
             ResultSet result = statement.executeQuery();
-
+            ResultSet result2 = Userstatement.executeQuery();
+            
+            if(result2.next()){
+                name = result2.getString("name");
+                location = result2.getString("location");
+                age = result2.getInt("age");
+                email = result2.getString("email");
+                
+                
+                
+                        
+            }
             
             if (result.next()) {
                
@@ -181,7 +194,11 @@ public class login extends javax.swing.JFrame {
         DatabaseConnection.disconnect();
     }
     }//GEN-LAST:event_loginButtonActionPerformed
-
+    public String getName(){
+        return name;
+    }
+    
+    
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         // TODO add your handling code here:
         login.this.dispose();
@@ -213,4 +230,9 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JTextField loginUsernameField;
     private javax.swing.JButton registerButton;
     // End of variables declaration//GEN-END:variables
+    private String name;
+    private String location;
+    private int age;
+    private String email;
+    private String username;
 }

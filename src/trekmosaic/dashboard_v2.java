@@ -236,7 +236,11 @@ public class dashboard_v2 extends javax.swing.JFrame {
     private void my_profile_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_my_profile_buttonActionPerformed
         // TODO add your handling code here:
         dashboard_v2.this.dispose();
+        
         profile create_profile = new profile();
+        login Login = new login();
+        String name = Login.getName();
+        create_profile.setName(name);
         create_profile.setLocationRelativeTo(null);
         create_profile.setVisible(true);
        
@@ -248,6 +252,7 @@ public class dashboard_v2 extends javax.swing.JFrame {
         dashboard_v2.this.dispose();
         createtrekA joinTrek  = new createtrekA();
         joinTrek.setLocationRelativeTo(null);
+        
         joinTrek.setVisible(true);
         }
         else 
