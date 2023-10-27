@@ -148,7 +148,7 @@ public class login extends javax.swing.JFrame {
         String enteredPassword = loginPasswordField.getText();
 
         Connection con = DatabaseConnection.connect();
-
+         
         
         String query = "SELECT * FROM user_login WHERE username=?";
         String dataquery = "SELECT * from user_data WHERE username = ?";
@@ -161,6 +161,7 @@ public class login extends javax.swing.JFrame {
             ResultSet result2 = Userstatement.executeQuery();
             
             if(result2.next()){
+                username = result2.getString("username");
                 name = result2.getString("name");
                 location = result2.getString("location");
                 age = result2.getInt("age");
@@ -179,8 +180,17 @@ public class login extends javax.swing.JFrame {
                 if (enteredPassword.equals(storedPassword)) {
                     
                     UserData.check = 1;
+                    UserIndoData.setName(name);
+                    UserIndoData.setLocation(location);
+                    UserIndoData.setAge(age);
+                    UserIndoData.setEmail(email);
                     
-                    JOptionPane.showMessageDialog(this, "You have signed in successfully ");
+                    JOptionPane.showConfirmDialog(this, "Login Successful");
+                    //profile p = new profile();
+                    //p.setName(name);
+                    
+                    //p.setLocationRelativeTo(null);
+                    //p.setVisible(true);
                 } else {
                   
                     JOptionPane.showMessageDialog(this, "Invalid password");
@@ -197,6 +207,7 @@ public class login extends javax.swing.JFrame {
     public String getName(){
         return name;
     }
+    
     
     
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed

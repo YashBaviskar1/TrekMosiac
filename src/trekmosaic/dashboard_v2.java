@@ -5,6 +5,7 @@
 package trekmosaic;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -206,9 +207,9 @@ public class dashboard_v2 extends javax.swing.JFrame {
     private void info_trek_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_info_trek_buttonActionPerformed
         // TODO add your handling code here:
         dashboard_v2.this.dispose();
-        info info_page = new info();
-        info_page.setLocationRelativeTo(null);
-        info_page.setVisible(true);
+        aboutTrek info = new aboutTrek();
+        info.setLocationRelativeTo(null);
+        info.setVisible(true);
     }//GEN-LAST:event_info_trek_buttonActionPerformed
 
     private void create_trek_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_trek_buttonActionPerformed
@@ -238,9 +239,23 @@ public class dashboard_v2 extends javax.swing.JFrame {
         dashboard_v2.this.dispose();
         
         profile create_profile = new profile();
-        login Login = new login();
-        String name = Login.getName();
+        
+          
+       String TrekName = UserIndoData.getTrekName();
+       if(TrekName != null){
+           create_profile.setTable(TrekName);
+       }
+        
+        String name = UserIndoData.getName();
+        String location = UserIndoData.getLocation();
+        int age = UserIndoData.getAge();
+              
+        
         create_profile.setName(name);
+        create_profile.setLocation(location);
+        create_profile.setAge(age);
+        
+       
         create_profile.setLocationRelativeTo(null);
         create_profile.setVisible(true);
        

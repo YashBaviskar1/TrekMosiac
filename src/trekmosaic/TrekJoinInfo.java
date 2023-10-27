@@ -4,6 +4,7 @@
  */
 package trekmosaic;
 
+import java.awt.event.WindowEvent;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import trekmosaic.joinatrek;
+import java.awt.event.WindowListener;
+import javax.swing.JOptionPane;
 public class TrekJoinInfo extends javax.swing.JFrame {
 
     /**
@@ -50,7 +53,6 @@ public class TrekJoinInfo extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1080, 720));
         setPreferredSize(new java.awt.Dimension(1080, 720));
         setResizable(false);
@@ -143,7 +145,7 @@ public class TrekJoinInfo extends javax.swing.JFrame {
         transportationLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         transportationLabel.setText("Transportation : ");
         jPanel1.add(transportationLabel);
-        transportationLabel.setBounds(40, 250, 250, 35);
+        transportationLabel.setBounds(40, 250, 860, 35);
 
         InclusionText.setColumns(20);
         InclusionText.setLineWrap(true);
@@ -162,6 +164,11 @@ public class TrekJoinInfo extends javax.swing.JFrame {
 
         joinButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         joinButton.setText("BOOK NOW");
+        joinButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joinButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(joinButton);
         joinButton.setBounds(450, 530, 173, 39);
 
@@ -179,6 +186,15 @@ public class TrekJoinInfo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void joinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinButtonActionPerformed
+       
+        UserIndoData.setTrekName(trekName);
+        
+        JOptionPane.showMessageDialog(this, """
+                                            Enrollment Confirmed!! 
+                                             Details sent on registered email adress!""");
+    }//GEN-LAST:event_joinButtonActionPerformed
+    
    
     public void setTrekNameLabel(String text){
         trekNameLabel.setText(text);
@@ -238,6 +254,12 @@ public class TrekJoinInfo extends javax.swing.JFrame {
     }
     return null;
 }
+   
+    public void windowClosing(WindowEvent e) {
+        // Set the default close operation to do nothing (HIDE_ON_CLOSE)
+        setDefaultCloseOperation(javax.swing.JFrame.HIDE_ON_CLOSE);
+        setVisible(false);
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

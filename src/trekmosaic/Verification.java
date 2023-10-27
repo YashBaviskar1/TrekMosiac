@@ -125,23 +125,27 @@ public class Verification extends javax.swing.JFrame {
     private void verifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyButtonActionPerformed
         // TODO add your handling code here:
         UserData.verify = 1;
-       
-        JOptionPane.showMessageDialog(this, "Your Profile has been verified");
-    }//GEN-LAST:event_verifyButtonActionPerformed
-
-    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-        // TODO add your handling code here:
-        if(filename != null){
+       if(filename != null){
         JOptionPane.showMessageDialog(this, "Your profile has been verified");
-        Verification.this.dispose();
-        dashboard_v2 db = new dashboard_v2();
-        db.setLocationRelativeTo(null);
-        db.setVisible(true);
         }
         else
         {
             JOptionPane.showMessageDialog(this, "Profile is not been verified");
         }
+        
+    }//GEN-LAST:event_verifyButtonActionPerformed
+
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+        // TODO add your handling code here:
+      
+        Verification.this.dispose();
+        dashboard_v2 db = new dashboard_v2();
+        db.setLocationRelativeTo(null);
+        db.setVisible(true);
+       
+        
+            
+        
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void uploaddocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploaddocActionPerformed

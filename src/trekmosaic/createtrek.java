@@ -61,6 +61,8 @@ public class createtrek extends javax.swing.JFrame {
         homeButton = new javax.swing.JButton();
         attachButton = new javax.swing.JButton();
         attachtextButton = new javax.swing.JButton();
+        infoAttach = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -230,7 +232,20 @@ public class createtrek extends javax.swing.JFrame {
             }
         });
         jPanel1.add(attachtextButton);
-        attachtextButton.setBounds(580, 390, 90, 40);
+        attachtextButton.setBounds(590, 390, 90, 40);
+
+        infoAttach.setText("ATTACH");
+        infoAttach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                infoAttachActionPerformed(evt);
+            }
+        });
+        jPanel1.add(infoAttach);
+        infoAttach.setBounds(590, 550, 100, 30);
+
+        jButton1.setText("ADD GEAR");
+        jPanel1.add(jButton1);
+        jButton1.setBounds(820, 560, 110, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -399,6 +414,31 @@ public class createtrek extends javax.swing.JFrame {
         
     }//GEN-LAST:event_attachtextButtonActionPerformed
 
+    private void infoAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoAttachActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if(returnValue == JFileChooser.APPROVE_OPTION){
+            
+            try {
+                File selectedFile = fileChooser.getSelectedFile();
+                String filepath = selectedFile.getAbsolutePath();
+                
+                contents = new StringBuilder();
+                BufferedReader br = new BufferedReader(new FileReader(filepath));
+                String line;
+                while((line = br.readLine()) != null){
+                    contents.append(line).append("\n");
+                }
+                br.close();
+            } catch (IOException ex) {
+                Logger.getLogger(createtrek.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             
+        }
+        String s = contents.toString();
+      infoNameField.setText(s);
+    }//GEN-LAST:event_infoAttachActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -411,8 +451,10 @@ public class createtrek extends javax.swing.JFrame {
     private javax.swing.JTextField heightNameField;
     private javax.swing.JButton homeButton;
     private javax.swing.JTextField inclusionsNameField;
+    private javax.swing.JButton infoAttach;
     private javax.swing.JTextField infoNameField;
     private javax.swing.JTextField itinaryField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLblcreate_trek;
     private javax.swing.JPanel jPanel1;

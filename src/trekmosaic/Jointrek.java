@@ -144,7 +144,7 @@ public class Jointrek extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jList2);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(693, 113, 307, 55));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, 307, 55));
 
         jTextArea5.setBackground(new java.awt.Color(153, 153, 153));
         jTextArea5.setColumns(20);
