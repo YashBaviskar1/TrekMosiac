@@ -5,9 +5,15 @@
 package trekmosaic;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 /**
  *
  * @author main
@@ -33,8 +39,6 @@ public class Verification extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         verifyButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -61,18 +65,6 @@ public class Verification extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText(" Upload id :");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 108, 41));
-
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Post trek experience and details :");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 246, 44));
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 493, 139));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 206, 47));
 
         verifyButton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
@@ -118,23 +110,68 @@ public class Verification extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void verifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyButtonActionPerformed
-        // TODO add your handling code here:
+       
         UserData.verify = 1;
+        UserIndoData u = new UserIndoData();
+        u.setPendingVerification(UserIndoData.getName());
+        name = UserIndoData.getName();
+       Connection con = DatabaseConnection.connect();
        if(filename != null){
-        JOptionPane.showMessageDialog(this, "Your profile has been verified");
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(this, "Profile is not been verified");
-        }
+       String query = "UPDATE user_data SET document = ? WHERE name = ?";
         
+        try {
+            PreparedStatement stm = con.prepareStatement(query);
+            FileInputStream fis;
+            try {
+                fis = new FileInputStream(filename);
+                stm.setBinaryStream(1, fis);
+                stm.setString(2, name);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Verification.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Verification.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally {
+            DatabaseConnection.disconnect();
+        }
+        if(filename != null){
+        updateVerificationStatus(name);
+       }
+       }        
+       else
+       {
+           JOptionPane.showMessageDialog(this, "Document not found");
+       }
+       
+       JOptionPane.showConfirmDialog(this, "Image sent for verification to admin");
     }//GEN-LAST:event_verifyButtonActionPerformed
-
+    private void updateVerificationStatus(String name){
+        Connection con = DatabaseConnection.connect();
+        String verifyquery = "UPDATE user_data SET verification_status = ? WHERE name = ?";
+        String update = "Pending Verification";
+        try {
+            PreparedStatement stm2 = con.prepareStatement(verifyquery);
+            stm2.setString(1, update);
+            stm2.setString(2, name);
+            stm2.executeUpdate();
+        } catch (SQLException ex) {
+            
+        } finally {
+            DatabaseConnection.disconnect();
+        }
+      
+        
+    }   
+    
+        
+    
+    
+    
+    
+    
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
       
@@ -168,14 +205,13 @@ public class Verification extends javax.swing.JFrame {
     private javax.swing.JButton homeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JButton uploaddoc;
     private javax.swing.JButton verifyButton;
     // End of variables declaration//GEN-END:variables
     private String filename;
+    private String name;
 }

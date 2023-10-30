@@ -4,6 +4,8 @@
  */
 package trekmosaic;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author khand
@@ -17,6 +19,16 @@ public class UserIndoData {
     private static String Trek;
     private static String MyTrek;
     
+    ArrayList<String> ar  = new ArrayList<String>();
+    private static String PendingVerification;
+    
+    public void setPendingVerification(String name){
+        ar.add(name);
+    }
+    
+    public  ArrayList getPendingVerification(){
+        return ar;
+    }
     public static void setMyTrekName(String name){
         MyTrek = name;
     }

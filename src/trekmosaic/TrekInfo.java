@@ -22,6 +22,7 @@ public class TrekInfo extends javax.swing.JFrame {
      */
     public TrekInfo() {
         initComponents();
+  
     }
 
     /**
@@ -43,7 +44,6 @@ public class TrekInfo extends javax.swing.JFrame {
         bglabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1080, 720));
         setMinimumSize(new java.awt.Dimension(1080, 720));
 
         jPanel1.setMaximumSize(new java.awt.Dimension(1080, 720));
@@ -54,6 +54,7 @@ public class TrekInfo extends javax.swing.JFrame {
         imagePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(imagePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 200, 190));
 
+        infoArea.setEditable(false);
         infoArea.setColumns(20);
         infoArea.setLineWrap(true);
         infoArea.setRows(5);

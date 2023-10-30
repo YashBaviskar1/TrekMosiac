@@ -29,11 +29,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class joinatrek extends javax.swing.JFrame {
 
-    /**
-     * Creates new form joinatrek
-     */
+
     public joinatrek() {
         initComponents();
+        TrekCode.x_label = 540;
+        TrekCode.y_label = 250;
+        getData();
+        trek1Panel("Peb Fort ");
     }
 
     /**
@@ -51,8 +53,14 @@ public class joinatrek extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        showTrek = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        trek1Image = new javax.swing.JPanel();
+        trek1Label = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,7 +77,7 @@ public class joinatrek extends javax.swing.JFrame {
                 testFieldActionPerformed(evt);
             }
         });
-        jPanel9.add(testField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 150, 30));
+        jPanel9.add(testField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 580, 30));
 
         testButton.setText("ENTER");
         testButton.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +85,7 @@ public class joinatrek extends javax.swing.JFrame {
                 testButtonActionPerformed(evt);
             }
         });
-        jPanel9.add(testButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, -1, 30));
+        jPanel9.add(testButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, -1, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,19 +100,11 @@ public class joinatrek extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel9.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 170, 380));
+        jPanel9.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 170, 170));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         jLabel1.setText("Search For Trek to continue :");
         jPanel9.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
-
-        showTrek.setText("SHOW TREKS");
-        showTrek.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showTrekActionPerformed(evt);
-            }
-        });
-        jPanel9.add(showTrek, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 120, 30));
 
         backButton.setText("BACK");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -112,9 +112,33 @@ public class joinatrek extends javax.swing.JFrame {
                 backButtonActionPerformed(evt);
             }
         });
-        jPanel9.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 90, 30));
+        jPanel9.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 90, 30));
 
-        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 380, 470));
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 250));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, -1, -1));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        trek1Image.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(trek1Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 140));
+
+        trek1Label.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+        trek1Label.setText("trekName");
+        jPanel1.add(trek1Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 170, 24));
+
+        jButton1.setText("JOIN");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, -1, -1));
+
+        jButton2.setText("INFO");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 270, 240));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 270, 240));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/bgmtresizeddddd.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -136,10 +160,8 @@ public class joinatrek extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_testFieldActionPerformed
-
-    private void showTrekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showTrekActionPerformed
-        // TODO add your handling code here:
-        Connection con = DatabaseConnection.connect();
+    void getData(){
+                Connection con = DatabaseConnection.connect();
         String tableQuery = "SELECT name from trek_data";
         try {
             Statement statement = con.createStatement();
@@ -161,8 +183,7 @@ public class joinatrek extends javax.swing.JFrame {
            DatabaseConnection.disconnect();
         }
         
-    }//GEN-LAST:event_showTrekActionPerformed
-
+    }
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         joinatrek.this.dispose();
@@ -323,6 +344,16 @@ public class joinatrek extends javax.swing.JFrame {
         return 0;
     }
     
+        private void trek1Panel(String trekname){
+        ImageIcon imageIcon = getImageFromDatabase(trekname);
+        ImageLabel1 = new javax.swing.JLabel(imageIcon);
+        trek1Image.add(ImageLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 140));
+        trek1Label.setText(trekname);
+         
+    }
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -357,14 +388,20 @@ public class joinatrek extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton showTrek;
     private javax.swing.JButton testButton;
     private javax.swing.JTextField testField;
+    private javax.swing.JPanel trek1Image;
+    private javax.swing.JLabel trek1Label;
     // End of variables declaration//GEN-END:variables
     private javax.swing.JLabel ImageLabel;
     private javax.swing.JPanel ImagePanel;
@@ -373,6 +410,7 @@ public class joinatrek extends javax.swing.JFrame {
     private javax.swing.JLabel TrekLabel;
     private javax.swing.JPanel ImageInPanel;
     private javax.swing.JPanel TrekInfoPanel;
+    private javax.swing.JLabel ImageLabel1;
     private Component component;
     
     private String trekName2;

@@ -14,6 +14,16 @@ public class UserData {
     public static int verify = 0;
     public static int cost = 0;
     public static String CheckSignIn;
+    public static int upload = 0;
+    public static String filename;
+    
+    public static void setFilename(String txt){
+        filename = txt;
+    }
+    
+    public static String getFilename(){
+        return filename;
+    }
     
     public static void setChecksignIn(String name){
         CheckSignIn = name;

@@ -62,7 +62,10 @@ public class createtrek extends javax.swing.JFrame {
         attachButton = new javax.swing.JButton();
         attachtextButton = new javax.swing.JButton();
         infoAttach = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        addGearButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,38 +81,39 @@ public class createtrek extends javax.swing.JFrame {
         jLblcreate_trek.setFont(new java.awt.Font("Segoe UI Symbol", 1, 36)); // NOI18N
         jLblcreate_trek.setForeground(new java.awt.Color(255, 255, 255));
         jLblcreate_trek.setText("Create Trek");
+        jLblcreate_trek.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.add(jLblcreate_trek);
-        jLblcreate_trek.setBounds(99, 33, 246, 52);
+        jLblcreate_trek.setBounds(20, 10, 220, 60);
 
-        jlabitinary.setFont(new java.awt.Font("BankGothic Md BT", 0, 18)); // NOI18N
+        jlabitinary.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         jlabitinary.setForeground(new java.awt.Color(255, 255, 255));
-        jlabitinary.setText("short Itinary");
+        jlabitinary.setText("Short Itinary");
         jPanel1.add(jlabitinary);
-        jlabitinary.setBounds(170, 380, 182, 47);
+        jlabitinary.setBounds(510, 90, 150, 40);
 
-        jlbheight.setFont(new java.awt.Font("BankGothic Md BT", 0, 18)); // NOI18N
+        jlbheight.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         jlbheight.setForeground(new java.awt.Color(255, 255, 255));
         jlbheight.setText("Height");
         jPanel1.add(jlbheight);
-        jlbheight.setBounds(170, 240, 182, 47);
+        jlbheight.setBounds(110, 230, 80, 47);
 
-        jlabeltransportation.setFont(new java.awt.Font("BankGothic Md BT", 0, 18)); // NOI18N
+        jlabeltransportation.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         jlabeltransportation.setForeground(new java.awt.Color(255, 255, 255));
         jlabeltransportation.setText("Transportation");
         jPanel1.add(jlabeltransportation);
-        jlabeltransportation.setBounds(170, 310, 182, 47);
+        jlabeltransportation.setBounds(20, 300, 182, 47);
 
-        jlabelinfo.setFont(new java.awt.Font("BankGothic Md BT", 0, 18)); // NOI18N
+        jlabelinfo.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         jlabelinfo.setForeground(new java.awt.Color(255, 255, 255));
-        jlabelinfo.setText("Information about trek ");
+        jlabelinfo.setText("Information of trek ");
         jPanel1.add(jlabelinfo);
-        jlabelinfo.setBounds(70, 540, 270, 47);
+        jlabelinfo.setBounds(450, 280, 260, 80);
 
-        jlbinclusion.setFont(new java.awt.Font("BankGothic Md BT", 0, 18)); // NOI18N
+        jlbinclusion.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         jlbinclusion.setForeground(new java.awt.Color(255, 255, 255));
         jlbinclusion.setText("Inclusions");
         jPanel1.add(jlbinclusion);
-        jlbinclusion.setBounds(170, 450, 182, 47);
+        jlbinclusion.setBounds(540, 160, 120, 47);
 
         itinaryField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,7 +121,7 @@ public class createtrek extends javax.swing.JFrame {
             }
         });
         jPanel1.add(itinaryField);
-        itinaryField.setBounds(349, 384, 228, 47);
+        itinaryField.setBounds(660, 90, 228, 47);
 
         transportationNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,7 +129,7 @@ public class createtrek extends javax.swing.JFrame {
             }
         });
         jPanel1.add(transportationNameField);
-        transportationNameField.setBounds(349, 312, 228, 47);
+        transportationNameField.setBounds(190, 300, 228, 47);
 
         heightNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +137,7 @@ public class createtrek extends javax.swing.JFrame {
             }
         });
         jPanel1.add(heightNameField);
-        heightNameField.setBounds(349, 238, 228, 47);
+        heightNameField.setBounds(190, 230, 228, 47);
 
         inclusionsNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,21 +145,27 @@ public class createtrek extends javax.swing.JFrame {
             }
         });
         jPanel1.add(inclusionsNameField);
-        inclusionsNameField.setBounds(349, 456, 228, 49);
-        jPanel1.add(infoNameField);
-        infoNameField.setBounds(349, 541, 228, 47);
+        inclusionsNameField.setBounds(660, 160, 228, 49);
 
-        jlbtrekname.setFont(new java.awt.Font("BankGothic Md BT", 0, 18)); // NOI18N
+        infoNameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                infoNameFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(infoNameField);
+        infoNameField.setBounds(660, 300, 228, 47);
+
+        jlbtrekname.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         jlbtrekname.setForeground(new java.awt.Color(255, 255, 255));
         jlbtrekname.setText("Name of trek ");
         jPanel1.add(jlbtrekname);
-        jlbtrekname.setBounds(160, 100, 182, 47);
+        jlbtrekname.setBounds(50, 90, 150, 47);
 
-        jlbprice.setFont(new java.awt.Font("BankGothic Md BT", 1, 18)); // NOI18N
+        jlbprice.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         jlbprice.setForeground(new java.awt.Color(255, 255, 255));
-        jlbprice.setText("price");
+        jlbprice.setText("Price");
         jPanel1.add(jlbprice);
-        jlbprice.setBounds(150, 610, 182, 47);
+        jlbprice.setBounds(590, 230, 70, 47);
 
         priceField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,13 +173,13 @@ public class createtrek extends javax.swing.JFrame {
             }
         });
         jPanel1.add(priceField);
-        priceField.setBounds(349, 615, 228, 47);
+        priceField.setBounds(660, 230, 228, 47);
 
-        jlblocation1.setFont(new java.awt.Font("BankGothic Md BT", 0, 18)); // NOI18N
+        jlblocation1.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         jlblocation1.setForeground(new java.awt.Color(255, 255, 255));
         jlblocation1.setText("Location");
         jPanel1.add(jlblocation1);
-        jlblocation1.setBounds(170, 170, 182, 47);
+        jlblocation1.setBounds(90, 160, 100, 47);
 
         trekNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,7 +187,7 @@ public class createtrek extends javax.swing.JFrame {
             }
         });
         jPanel1.add(trekNameField);
-        trekNameField.setBounds(350, 100, 228, 47);
+        trekNameField.setBounds(190, 90, 228, 47);
 
         locNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,12 +195,12 @@ public class createtrek extends javax.swing.JFrame {
             }
         });
         jPanel1.add(locNameField);
-        locNameField.setBounds(349, 173, 228, 47);
+        locNameField.setBounds(190, 160, 228, 47);
 
         confirmbutton.setBackground(new java.awt.Color(102, 102, 102));
         confirmbutton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         confirmbutton.setForeground(new java.awt.Color(255, 255, 255));
-        confirmbutton.setText("CONFIRM");
+        confirmbutton.setText("CONFIRM TREK ");
         confirmbutton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         confirmbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,7 +208,7 @@ public class createtrek extends javax.swing.JFrame {
             }
         });
         jPanel1.add(confirmbutton);
-        confirmbutton.setBounds(720, 230, 120, 40);
+        confirmbutton.setBounds(430, 460, 200, 40);
 
         homeButton.setBackground(new java.awt.Color(102, 102, 102));
         homeButton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
@@ -210,42 +220,67 @@ public class createtrek extends javax.swing.JFrame {
             }
         });
         jPanel1.add(homeButton);
-        homeButton.setBounds(720, 290, 120, 40);
+        homeButton.setBounds(870, 570, 120, 40);
 
-        attachButton.setBackground(new java.awt.Color(102, 102, 102));
+        attachButton.setBackground(new java.awt.Color(204, 204, 204));
         attachButton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        attachButton.setForeground(new java.awt.Color(255, 255, 255));
-        attachButton.setText("UPLOAD");
+        attachButton.setText("UPLOAD PHOTO ");
+        attachButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         attachButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 attachButtonActionPerformed(evt);
             }
         });
         jPanel1.add(attachButton);
-        attachButton.setBounds(720, 350, 120, 40);
+        attachButton.setBounds(550, 390, 150, 40);
 
+        attachtextButton.setBackground(new java.awt.Color(204, 204, 204));
         attachtextButton.setText("ATTACH");
         attachtextButton.setActionCommand("");
+        attachtextButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         attachtextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 attachtextButtonActionPerformed(evt);
             }
         });
         jPanel1.add(attachtextButton);
-        attachtextButton.setBounds(590, 390, 90, 40);
+        attachtextButton.setBounds(890, 90, 90, 20);
 
+        infoAttach.setBackground(new java.awt.Color(204, 204, 204));
         infoAttach.setText("ATTACH");
+        infoAttach.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         infoAttach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 infoAttachActionPerformed(evt);
             }
         });
         jPanel1.add(infoAttach);
-        infoAttach.setBounds(590, 550, 100, 30);
+        infoAttach.setBounds(890, 300, 100, 20);
 
-        jButton1.setText("ADD GEAR");
-        jPanel1.add(jButton1);
-        jButton1.setBounds(820, 560, 110, 40);
+        addGearButton.setText("ADD GEAR");
+        addGearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addGearButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(addGearButton);
+        addGearButton.setBounds(700, 570, 110, 40);
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Attach Info text file");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(890, 320, 130, 16);
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Attach Itenary text file");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(890, 110, 130, 16);
+
+        jLabel4.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Trek Photo to Display :");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(290, 390, 260, 28);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -321,7 +356,7 @@ public class createtrek extends javax.swing.JFrame {
       String filepath = TrekData.getFilename();
       
       Connection con = DatabaseConnection.connect();
-      String trekQuery = "INSERT into trek_data(name, location, height, transport, short_itinerary, inclusions, info, price, image ) VALUES(?,?,?,?,?,?,?,?,?)";
+      String trekQuery = "INSERT into trek_data(name, location, height, transport, short_itinerary, inclusions, new_info, price, image ) VALUES(?,?,?,?,?,?,?,?,?)";
       
       try(PreparedStatement statement = con.prepareStatement(trekQuery)){
          statement.setString(1, trekName);
@@ -439,12 +474,25 @@ public class createtrek extends javax.swing.JFrame {
       infoNameField.setText(s);
     }//GEN-LAST:event_infoAttachActionPerformed
 
+    private void addGearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addGearButtonActionPerformed
+        // TODO add your handling code here:
+        addGear g = new addGear();
+        createtrek.this.dispose();
+        g.setLocationRelativeTo(null);
+        g.setVisible(true);
+    }//GEN-LAST:event_addGearButtonActionPerformed
+
+    private void infoNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoNameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_infoNameFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addGearButton;
     private javax.swing.JButton attachButton;
     private javax.swing.JButton attachtextButton;
     private javax.swing.JButton confirmbutton;
@@ -454,8 +502,10 @@ public class createtrek extends javax.swing.JFrame {
     private javax.swing.JButton infoAttach;
     private javax.swing.JTextField infoNameField;
     private javax.swing.JTextField itinaryField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLblcreate_trek;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jlabelinfo;

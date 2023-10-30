@@ -22,6 +22,8 @@ public class aboutTrek extends javax.swing.JFrame {
      */
     public aboutTrek() {
         initComponents();
+        TrekCode.x_label = 0;
+        TrekCode.y_label = 250;
     }
 
     /**
@@ -98,9 +100,9 @@ public class aboutTrek extends javax.swing.JFrame {
                 backButtonActionPerformed(evt);
             }
         });
-        jPanel9.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 90, 30));
+        jPanel9.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 90, 30));
 
-        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 340, 280));
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 250));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -148,19 +150,18 @@ public class aboutTrek extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_showTrekActionPerformed
-      private int TrekDataFetch(String name){
+    private int TrekDataFetch(String name) {
         try {
-            
+
             Connection con = DatabaseConnection.connect();
             String query = "SELECT * from trek_data where name = ?";
             PreparedStatement statement = con.prepareStatement(query);
-            
+
             statement.setString(1, name);
             ResultSet resultSet = statement.executeQuery();
-            
+
             try {
-                if(resultSet.next())
-                {
+                if (resultSet.next()) {
 
                     info = resultSet.getString("info");
 
@@ -178,8 +179,8 @@ public class aboutTrek extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(joinatrek.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch(SQLException ex){
-            
+        } catch (SQLException ex) {
+
         }
         return 0;
     }

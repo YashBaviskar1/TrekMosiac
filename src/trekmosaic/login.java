@@ -91,7 +91,7 @@ public class login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(loginButton);
-        loginButton.setBounds(490, 260, 120, 40);
+        loginButton.setBounds(490, 260, 130, 40);
 
         registerButton.setText("Create an account");
         registerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +100,7 @@ public class login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(registerButton);
-        registerButton.setBounds(490, 320, 140, 40);
+        registerButton.setBounds(490, 320, 130, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -142,11 +142,17 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-      
-        try {
+        
+        
         String enteredUsername = loginUsernameField.getText();
         String enteredPassword = loginPasswordField.getText();
-
+        
+        if(enteredUsername == null || enteredPassword == null){
+            JOptionPane.showMessageDialog(this, "kindly fill all the fields");
+        }
+        else
+        {
+        try {
         Connection con = DatabaseConnection.connect();
          
         
@@ -203,6 +209,7 @@ public class login extends javax.swing.JFrame {
     } catch (SQLException ex) {} finally {
         DatabaseConnection.disconnect();
     }
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
     public String getName(){
         return name;

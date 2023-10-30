@@ -11,9 +11,8 @@ package trekmosaic;
 public class TrekPlanner {
 
     public static void main(String[] args) {
-        dashboard_v2 dashboard = new dashboard_v2();
-        dashboard.setLocationRelativeTo(null);
-        dashboard.setVisible(true);
-        
+      AdminloginPage ad = new AdminloginPage();
+        ad.setLocationRelativeTo(null);
+        ad.setVisible(true);
     }
 }

@@ -8,11 +8,16 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
-
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Icon;
 /**
  *
  * @author ADMIN
@@ -23,6 +28,8 @@ public class profile extends javax.swing.JFrame {
      * Creates new form profile
      */
     public profile() {
+        
+        
         initComponents();
     }
 
@@ -56,6 +63,8 @@ public class profile extends javax.swing.JFrame {
         addLINK = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         createdTrek = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -143,7 +152,7 @@ public class profile extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         blankpfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/EMPTY_PFP.png"))); // NOI18N
-        jPanel2.add(blankpfp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 130));
+        jPanel2.add(blankpfp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 150));
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(10, 90, 130, 130);
@@ -155,7 +164,7 @@ public class profile extends javax.swing.JFrame {
             }
         });
         jPanel1.add(uploadButton);
-        uploadButton.setBounds(20, 230, 120, 23);
+        uploadButton.setBounds(20, 240, 120, 23);
 
         JoinedTreks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -207,13 +216,28 @@ public class profile extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(260, 410, 130, 120);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("VERIFICATION STATUS : ");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(500, 10, 320, 50);
+
+        jButton3.setText("test");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3);
+        jButton3.setBounds(650, 450, 72, 23);
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
         jLabel2.setToolTipText("");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, -20, 1080, 720);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1230, 730);
+        jPanel1.setBounds(0, 0, 890, 690);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -223,6 +247,34 @@ public class profile extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        if(UserData.upload == 1){
+        Connection con = DatabaseConnection.connect();
+        String query = "UPDATE user_data SET pfp = ? WHERE name = ?";
+        
+        try {
+            PreparedStatement stm = con.prepareStatement(query);
+            FileInputStream fis;
+            try {
+                fis = new FileInputStream(filename);
+                stm.setBinaryStream(1, fis);
+                stm.setString(2, Name);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(profile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            stm.executeUpdate();
+            stm.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(profile.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DatabaseConnection.disconnect();
+        }
+        }
+         
+        
+        
+        
+        
         profile.this.dispose();
         dashboard_v2 dashboard = new dashboard_v2();
         dashboard.setLocationRelativeTo(null);
@@ -241,11 +293,19 @@ public class profile extends javax.swing.JFrame {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
-        String filename = f.getAbsolutePath();
-                
+        filename = f.getAbsolutePath();
+        UserData.setFilename(filename);
+       
+        UserData.upload = 1;
+        if(UserData.upload == 1)
+        {        
         addImagePanel(filename);
+        }
     }//GEN-LAST:event_uploadButtonActionPerformed
-
+    
+    
+    
+    
     private void addLINKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLINKActionPerformed
         // TODO add your handling code here:
         JDialog inputDialog = new JDialog();
@@ -260,7 +320,7 @@ public class profile extends javax.swing.JFrame {
                 // Get the link from the text field
                 String link = linkTextField.getText();
 
-                // Update the label
+                
                 instagramLabel.setText("Instagram: " + link);
 
                 // Close the input dialog
@@ -298,7 +358,33 @@ public class profile extends javax.swing.JFrame {
         AboutMe.pack();
         AboutMe.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-    private void addImagePanel(String filename){
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        AdminVerification p = new AdminVerification();
+        p.setLocationRelativeTo(null);
+        p.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+    public void addImagePanel() {
+        ImagePanel = new javax.swing.JPanel();
+        ImagePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(ImagePanel);
+        ImagePanel.setBounds(10, 90, 130, 130);
+
+        ImageIcon icon = null;
+        if (filename != null) {
+            icon = new ImageIcon(filename);
+        } else {
+            icon = getImageFromDatabase(Name);
+        }
+
+        ImageLabel = new javax.swing.JLabel(icon);
+        ImagePanel.add(ImageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 130));
+
+
+
+    }
+        private void addImagePanel(String filename){
        ImagePanel = new javax.swing.JPanel();
        
        ImagePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -313,6 +399,10 @@ public class profile extends javax.swing.JFrame {
     ImagePanel.revalidate();
     ImagePanel.repaint();
        
+    }
+    
+    void setFilename(String txt){
+        filename = txt;
     }
      void setTable(String name){
             DefaultTableModel model =  (DefaultTableModel)JoinedTreks.getModel();
@@ -329,7 +419,9 @@ public class profile extends javax.swing.JFrame {
     }
     
     public void setName(String name){
+        
         nameLabel.setText("name : " + name);
+        Name = name;
     }
   
    
@@ -340,6 +432,28 @@ public class profile extends javax.swing.JFrame {
     public void setLocation(String Location){
         locationLabel.setText(("Location : " + Location));
     }
+    
+    private ImageIcon getImageFromDatabase(String Name) {
+    try {
+        Connection con = DatabaseConnection.connect();
+        String selectQuery = "SELECT pfp FROM user_data WHERE name = ?";
+        try (PreparedStatement statement = con.prepareStatement(selectQuery)) {
+            statement.setString(1, Name);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    Blob imageBlob = resultSet.getBlob("image");
+                    byte[] imageBytes = imageBlob.getBytes(1, (int) imageBlob.length());
+                    ImageIcon imageIcon = new ImageIcon(imageBytes);
+                    return imageIcon;
+                }
+            }
+        }
+    } catch (SQLException ex) {
+    } finally {
+        DatabaseConnection.disconnect();
+    }
+    return null;
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JoinedTreks;
@@ -350,7 +464,9 @@ public class profile extends javax.swing.JFrame {
     private javax.swing.JLabel instagramLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
@@ -367,4 +483,6 @@ public class profile extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private javax.swing.JPanel ImagePanel;
     private javax.swing.JLabel ImageLabel;
+    String Name;
+    String filename;
 }

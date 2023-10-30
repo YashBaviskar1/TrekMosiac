@@ -21,6 +21,8 @@ public class TrekJoinInfo extends javax.swing.JFrame {
      */
     public TrekJoinInfo() {
         initComponents();
+        itinenaryText.setEnabled(false);
+        InclusionText.setEnabled(false);
     }
 
     /**
@@ -53,16 +55,14 @@ public class TrekJoinInfo extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setMaximumSize(new java.awt.Dimension(1080, 720));
-        setPreferredSize(new java.awt.Dimension(1080, 720));
         setResizable(false);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setForeground(new java.awt.Color(102, 255, 0));
         jPanel1.setMaximumSize(new java.awt.Dimension(1080, 720));
         jPanel1.setMinimumSize(new java.awt.Dimension(1080, 720));
-        jPanel1.setLayout(null);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 255));
         jPanel2.setForeground(new java.awt.Color(51, 51, 255));
@@ -78,36 +78,32 @@ public class TrekJoinInfo extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 117, 0);
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         imagepanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         imagepanel.setMaximumSize(new java.awt.Dimension(180, 150));
         imagepanel.setMinimumSize(new java.awt.Dimension(180, 150));
         imagepanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(imagepanel);
-        imagepanel.setBounds(60, 10, 180, 160);
+        jPanel1.add(imagepanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 180, 160));
 
         trekNameLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 36)); // NOI18N
         trekNameLabel.setText("Trek Name");
-        jPanel1.add(trekNameLabel);
-        trekNameLabel.setBounds(320, 10, 270, 44);
+        jPanel1.add(trekNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 270, 44));
 
+        itinenaryText.setEditable(false);
         itinenaryText.setColumns(20);
         itinenaryText.setLineWrap(true);
         itinenaryText.setRows(5);
         itinenaryText.setWrapStyleWord(true);
         jScrollPane1.setViewportView(itinenaryText);
 
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(40, 340, 290, 340);
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 290, 340));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("DATES AVAILABLE");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(697, 6, 190, 26);
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(697, 6, 190, 26));
 
         jList1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jList1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -118,35 +114,30 @@ public class TrekJoinInfo extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jList1);
 
-        jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(697, 38, 156, 23);
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(697, 38, 156, 23));
 
         itinaryLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         itinaryLabel.setText("Itinerary :");
         itinaryLabel.setToolTipText("");
-        jPanel1.add(itinaryLabel);
-        itinaryLabel.setBounds(40, 310, 107, 20);
+        jPanel1.add(itinaryLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 107, -1));
 
         locationLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         locationLabel.setText("LOCATION : ");
-        jPanel1.add(locationLabel);
-        locationLabel.setBounds(329, 72, 274, 35);
+        jPanel1.add(locationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 72, 274, 35));
 
         heightLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         heightLabel.setText("HEIGHT (in ft) :");
-        jPanel1.add(heightLabel);
-        heightLabel.setBounds(40, 200, 252, 35);
+        jPanel1.add(heightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 252, 35));
 
         inclusionLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         inclusionLabel.setText("INCLUSIONS :");
-        jPanel1.add(inclusionLabel);
-        inclusionLabel.setBounds(340, 300, 160, 35);
+        jPanel1.add(inclusionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, 160, 35));
 
         transportationLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         transportationLabel.setText("Transportation : ");
-        jPanel1.add(transportationLabel);
-        transportationLabel.setBounds(40, 250, 860, 35);
+        jPanel1.add(transportationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 860, 35));
 
+        InclusionText.setEditable(false);
         InclusionText.setColumns(20);
         InclusionText.setLineWrap(true);
         InclusionText.setRows(5);
@@ -154,13 +145,11 @@ public class TrekJoinInfo extends javax.swing.JFrame {
         InclusionText.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane6.setViewportView(InclusionText);
 
-        jPanel1.add(jScrollPane6);
-        jScrollPane6.setBounds(340, 340, 218, 68);
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, 218, 68));
 
         PriceLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         PriceLabel.setText("PRICE : ");
-        jPanel1.add(PriceLabel);
-        PriceLabel.setBounds(460, 600, 320, 32);
+        jPanel1.add(PriceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, 320, -1));
 
         joinButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         joinButton.setText("BOOK NOW");
@@ -169,19 +158,15 @@ public class TrekJoinInfo extends javax.swing.JFrame {
                 joinButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(joinButton);
-        joinButton.setBounds(450, 530, 173, 39);
+        jPanel1.add(joinButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 530, 173, 39));
 
         jLabel10.setText("CREATOR PROFILE :");
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(697, 79, 300, 27);
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(697, 79, 300, 27));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1060, 720);
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, -1));
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1080, 720);
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

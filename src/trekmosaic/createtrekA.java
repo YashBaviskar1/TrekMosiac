@@ -262,7 +262,7 @@ public class createtrekA extends javax.swing.JFrame {
                 avaliableTrekButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(avaliableTrekButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, 150, 30));
+        jPanel1.add(avaliableTrekButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 150, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/BGpict.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

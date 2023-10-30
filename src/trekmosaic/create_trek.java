@@ -5,17 +5,20 @@
 package trekmosaic;
 import javax.swing.JOptionPane;
 import java.sql.*;
-/**
- *
- * @author main
- */
+import javax.swing.InputVerifier;
+import javax.swing.JComponent;
+import java.util.Properties;
+import javax.mail.*;
+import javax.mail.internet.*;
 public class create_trek extends javax.swing.JFrame {
 
     
     public create_trek() {
         initComponents();
+        nameField.setInputVerifier(new AlphabetInputVerifier());
+        locationField.setInputVerifier(new AlphabetInputVerifier());
+        ageField.setInputVerifier(new IntegerInputVerifier());
         
-      
     }
 
     
@@ -102,14 +105,6 @@ public class create_trek extends javax.swing.JFrame {
         nameField.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
         nameField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         nameField.setDoubleBuffered(true);
-        nameField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                nameFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                nameFieldFocusLost(evt);
-            }
-        });
         nameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameFieldActionPerformed(evt);
@@ -193,59 +188,79 @@ public class create_trek extends javax.swing.JFrame {
 
     private void jbtregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtregisterActionPerformed
         // TODO add your handling code here:
-        try{
-        String enteredUsername = jtextuser_name.getText();
-        String enteredPassword = jPasswordField1.getText();
-        String enteredName = nameField.getText();
-        String enteredEmail = emailField.getText();
-        String enteredAge = ageField.getText();
-        String enteredLocation = locationField.getText();
         
-        Connection con = DatabaseConnection.connect();
-        String Loginquery = "INSERT into user_login (username, password) VALUES (?, ?)";
-        String Dataquery =  "INSERT into user_data (name, email, username, password, age, location) VALUES(?, ?, ?, ?, ?, ?)";
-        
-        try(PreparedStatement Loginstatement = con.prepareStatement(Loginquery);
-            PreparedStatement Userstatement = con.prepareStatement(Dataquery)){
-            Loginstatement.setString(1, enteredUsername);
-            Loginstatement.setString(2, enteredPassword);
-            Loginstatement.executeUpdate();
+       String enteredUsername = jtextuser_name.getText();
+    String enteredPassword = jPasswordField1.getText();
+    String enteredName = nameField.getText();
+    String enteredEmail = emailField.getText();
+    String enteredAge = ageField.getText();
+    String enteredLocation = locationField.getText();
+
+    if (enteredName.isEmpty() || enteredUsername.isEmpty() || enteredEmail.isEmpty() || enteredPassword.isEmpty() || enteredAge.isEmpty() || enteredLocation.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "All fields are compulsory to be filled");
+    } else {
+        Connection con = DatabaseConnection.connect(); // Handle any exceptions related to database connection
+        String loginQuery = "INSERT into user_login (username, password) VALUES (?, ?)";
+        String dataQuery =  "INSERT into user_data (name, email, username, password, age, location) VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement loginStatement = con.prepareStatement(loginQuery);
+                PreparedStatement userStatement = con.prepareStatement(dataQuery)) {
+            loginStatement.setString(1, enteredUsername);
+            loginStatement.setString(2, enteredPassword);
+            loginStatement.executeUpdate();
             
-            Userstatement.setString(1, enteredName);
-            Userstatement.setString(2, enteredEmail);
-            Userstatement.setString(3, enteredUsername);
-            Userstatement.setString(4, enteredPassword);
-            Userstatement.setString(5, enteredAge);
-            Userstatement.setString(6, enteredLocation);
-            Userstatement.executeUpdate();
-        
-        JOptionPane.showConfirmDialog(this, "Registration confirmed Sign in to continue");
-        create_trek.this.dispose();
-        login Login = new login();
-        Login.setLocationRelativeTo(null);
-        Login.setVisible(true);
-        }
+            userStatement.setString(1, enteredName);
+            userStatement.setString(2, enteredEmail);
+            userStatement.setString(3, enteredUsername);
+            userStatement.setString(4, enteredPassword);
+            userStatement.setString(5, enteredAge);
+            userStatement.setString(6, enteredLocation);
+            userStatement.executeUpdate();
             
-       
-    }//GEN-LAST:event_jbtregisterActionPerformed
-    catch(SQLException ex){System.out.print(ex);}
-    finally{
+            JOptionPane.showMessageDialog(this, "Registration confirmed! email sent. Sign in to continue");
+            sendMail(enteredEmail);
+            create_trek.this.dispose();
+            login Login = new login();
+            Login.setLocationRelativeTo(null);
+            Login.setVisible(true);
+        } catch (SQLException ex) {
+            System.out.print(ex);
+        } finally {
             DatabaseConnection.disconnect();
         }
+    }    
+    }//GEN-LAST:event_jbtregisterActionPerformed
+    
+    public class AlphabetInputVerifier extends InputVerifier {
+    @Override
+    public boolean verify(JComponent input) {
+        javax.swing.JTextField textField = (javax.swing.JTextField) input;
+        String text = textField.getText();
+
+        if (!text.matches("^[a-zA-Z]*$")) {
+            JOptionPane.showMessageDialog(null, "Please enter alphabetic characters only.");
+            textField.setText(""); // Clear the field
+            return false;
+        }
+
+        return true;
     }
-    
-    
-    
-    private void nameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFieldFocusGained
-        
-    }//GEN-LAST:event_nameFieldFocusGained
+}
+    public class IntegerInputVerifier extends InputVerifier {
+    @Override
+    public boolean verify(JComponent input) {
+        javax.swing.JTextField textField = (javax.swing.JTextField) input;
+        String text = textField.getText();
 
-    private void nameFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFieldFocusLost
-      
-            
-    
-    }//GEN-LAST:event_nameFieldFocusLost
+        if (!text.matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Please enter an integer for age.");
+            textField.setText(""); // Clear the field
+            return false;
+        }
 
+        return true;
+    }
+}
+    
     private void jtextuser_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtextuser_nameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtextuser_nameActionPerformed
@@ -253,7 +268,41 @@ public class create_trek extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
+    void sendMail(String mail) {
+        System.out.println("Attempting to send email...");
+        String to = mail;
+        String from = "trekmoasic@gmail.com";
+        String host = "smtp.gmail.com";
+
+        String password = "qhwp bggl mnjd jcsc";
+        Properties properties = System.getProperties();
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", 587);
+        properties.put("mail.smtp.starttls.enable", "true");
+        System.out.println("line1");
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(from, password);
+            }
+        });
+        System.out.println("line2");
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject("TrekMosaic account creation");
+            message.setText("You have successfully created a account in trekmosaic, you can now JOIN our public treks and RENT OUR GEAR.");
+            System.out.println("line3");
+            // Send the message
+            Transport.send(message);
+          System.out.println("Email sent successfully to " + to);
+        } catch (MessagingException ex) { // Print the full stack trace
+            // Print the full stack trace
+    System.out.println("Email sending failed: " + ex.getMessage());
+    }
+       }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageField;
