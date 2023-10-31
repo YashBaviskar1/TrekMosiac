@@ -27,15 +27,17 @@ import javax.swing.table.DefaultTableModel;
  * @author ADMIN
  */
 
-public class joinatrek extends javax.swing.JFrame {
-
+public final class joinatrek extends javax.swing.JFrame {
 
     public joinatrek() {
         initComponents();
         TrekCode.x_label = 540;
         TrekCode.y_label = 250;
         getData();
+        DisplayAllTreks();
         trek1Panel("Peb Fort ");
+        getContentPane().revalidate();
+        getContentPane().repaint();
     }
 
     /**
@@ -152,10 +154,10 @@ public class joinatrek extends javax.swing.JFrame {
         
         int a = TrekDataFetch(trekName);
         if(a == 1){
-            addImageLabel(trekName);
+            addImageLabel(trekName, location, height, transport, itinenary, inclusions, info, price);
         } 
     }//GEN-LAST:event_testButtonActionPerformed
-
+  
     private void testFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testFieldActionPerformed
         // TODO add your handling code here:
 
@@ -193,55 +195,52 @@ public class joinatrek extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
     
     
-    private void addImageLabel(String trekName){
+    private void addImageLabel(String trekName, String location, int height, String transport, String itinenary, String inclusions, String info, int price) {
         int x = TrekCode.x_label;
         int y = TrekCode.y_label;
-        int height = TrekCode.height_label;
+        int height2 = TrekCode.height_label;
         int width = TrekCode.width_label;
         TrekCode trekcode = new TrekCode();
         ImageIcon imageIcon = getImageFromDatabase(trekName);
-        
+
         ImageLabel = new javax.swing.JLabel(imageIcon);
         ImagePanel = new javax.swing.JPanel();
         ButtonToJoin = new javax.swing.JButton();
         ButtonToInfo = new javax.swing.JButton();
         TrekLabel = new javax.swing.JLabel();
         ImageInPanel = new javax.swing.JPanel();
-        
+
         ImageInPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-       
-        
+
         ImagePanel.setBackground(new java.awt.Color(205, 205, 205));
         ImagePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ImagePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         ImagePanel.setMaximumSize(new java.awt.Dimension(270, 240));
         ImagePanel.setMinimumSize(new java.awt.Dimension(270, 240));
         ImagePanel.setRequestFocusEnabled(false);
-        
-        
-        
-        getContentPane().add(ImagePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y , width, height ));
-        
+
+        getContentPane().add(ImagePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, width, height2));
+
         TrekLabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         TrekLabel.setText(trekName);
-        TrekLabel.setSize(new Dimension(width,height));
+        TrekLabel.setSize(new Dimension(width, height));
         ImagePanel.add(TrekLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 170, 24));
-        
+
         ImageInPanel.add(ImageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 140));
-        
-        ImagePanel.add(ImageInPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 140) );
-        
+
+        ImagePanel.add(ImageInPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 140));
+
         ButtonToJoin.setText("JOIN");
         ButtonToJoin.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                joinButtonActionPerformed(evt);
+                joinButtonActionPerformed(evt, trekName, location, height, transport, itinenary, inclusions, info, price);
             }
 
-            private void joinButtonActionPerformed(ActionEvent evt) {
+            private void joinButtonActionPerformed(ActionEvent evt, String trekName, String location, int height, String transport, String itinenary, String inclusions, String info, int price) {
                 TrekJoinInfo JoinTrek = new TrekJoinInfo();
-                
-                JoinTrek.setTrekNameLabel(trekName2);
+
+                JoinTrek.setTrekNameLabel(trekName);
                 JoinTrek.setLocationLabel(location);
                 JoinTrek.setHeightLabel(height);
                 JoinTrek.setItinenaryText(itinenary);
@@ -251,30 +250,29 @@ public class joinatrek extends javax.swing.JFrame {
                 JoinTrek.setLocationRelativeTo(null);
                 JoinTrek.setVisible(true);
             }
-      
-                 
-           
+
         });
-        
+
         ButtonToInfo.setText("INFO");
         ButtonToInfo.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 infoButtonActionPerformed(e);
             }
-            private void infoButtonActionPerformed(ActionEvent evt){
+
+            private void infoButtonActionPerformed(ActionEvent evt) {
                 TrekInfo trekinfo = new TrekInfo();
-                
-                trekinfo.setTrekName(trekName2);
+
+                trekinfo.setTrekName(trekName);
                 trekinfo.setTrekArea(info);
                 trekinfo.setLocationRelativeTo(null);
                 trekinfo.setVisible(true);
             }
         });
-        
+
         ImagePanel.add(ButtonToJoin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, -1, -1));
         ImagePanel.add(ButtonToInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
-        
+
         TrekCode.x_label = trekcode.X_Cordinates(x);
         TrekCode.y_label = trekcode.Y_Cordinates(x, y);
         ImagePanel.revalidate();
@@ -352,7 +350,33 @@ public class joinatrek extends javax.swing.JFrame {
          
     }
     
-    
+    void DisplayAllTreks(){
+        try {
+        Connection con = DatabaseConnection.connect();
+        String selectQuery = "SELECT name, location, height, transport, short_itinerary, inclusions, info, price FROM trek_data";
+        PreparedStatement statement = con.prepareStatement(selectQuery);
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            String trekName = resultSet.getString("name");
+            String location = resultSet.getString("location");
+            int height = resultSet.getInt("height");
+            String transport = resultSet.getString("transport");
+            String itinenary = resultSet.getString("short_itinerary");
+            String inclusions = resultSet.getString("inclusions");
+            String info = resultSet.getString("info");
+            int price = resultSet.getInt("price");
+
+            // Create and add a panel for each trek
+            addImageLabel(trekName, location, height, transport, itinenary, inclusions, info, price);
+        }
+
+        statement.close();
+        DatabaseConnection.disconnect();
+    } catch (SQLException ex) {
+        
+    }
+    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -145,7 +145,7 @@ public class verificationpopup extends javax.swing.JFrame {
             stm2.setString(1, Name);
         } catch (SQLException ex) {
         }
-        JOptionPane.showConfirmDialog(this, "This user has been verified");
+        JOptionPane.showConfirmDialog(this, "This user has been deniesf");
     }//GEN-LAST:event_denyButtonActionPerformed
 
     private void approveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveButtonActionPerformed
